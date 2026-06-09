@@ -641,7 +641,7 @@
             inset: 0;
             background: rgba(6, 8, 15, 0.95);
             backdrop-filter: blur(24px) saturate(180%);
-            z-index: 55;
+            z-index: 45;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -964,7 +964,7 @@
     <div class="particles" id="particles"></div>
 
     <!-- ===== NAVBAR ===== -->
-    <nav class="sticky top-0 z-50 nav-glass px-6 py-4" id="navbar">
+    <nav class="sticky top-0 nav-glass px-6 py-4" id="navbar" style="z-index: 60;">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <a href="#" class="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400" style="font-family: 'JetBrains Mono', monospace; cursor: none;">
                 &lt; MK.DEV /&gt;
@@ -1312,14 +1312,25 @@
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = document.querySelector(link.getAttribute('href'));
-                toggleMobileNav();
+                // Close the menu
+                hamburgerBtn.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                // Always unlock scrolling
+                document.body.style.overflow = '';
                 // Wait for overlay to close, then scroll
                 setTimeout(() => {
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
-                }, 300);
+                }, 350);
             });
+        });
+
+        // Close mobile nav when clicking overlay background
+        mobileNavOverlay.addEventListener('click', (e) => {
+            if (e.target === mobileNavOverlay) {
+                toggleMobileNav();
+            }
         });
 
         // ===== CUSTOM CURSOR =====
