@@ -701,14 +701,40 @@
 
             /* Hero section */
             .hero-section {
-                min-height: calc(100vh - 60px);
-                min-height: calc(100dvh - 60px);
-                padding-top: 2rem;
-                padding-bottom: 2rem;
+                min-height: auto !important;
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
+            }
+
+            /* Hero flex layout — explicit override, don't rely on Tailwind */
+            .hero-layout {
+                flex-direction: column !important;
+                gap: 2rem !important;
+                padding-top: 1rem !important;
+                padding-bottom: 2rem !important;
+                align-items: center !important;
+            }
+
+            /* Profile image wrapper — center and size properly */
+            .profile-wrapper {
+                flex-shrink: 1 !important;
+                order: -1 !important;
+                display: flex !important;
+                justify-content: center !important;
+                width: 100% !important;
+            }
+
+            /* Text content — center on mobile */
+            .hero-text {
+                text-align: center !important;
+                flex: none !important;
+                width: 100% !important;
             }
 
             .hero-section h1 {
-                font-size: 2rem !important;
+                font-size: 1.85rem !important;
                 line-height: 1.2;
             }
 
@@ -718,16 +744,16 @@
 
             /* Profile image scales down */
             .profile-container {
-                width: 180px;
-                height: 180px;
+                width: 160px;
+                height: 160px;
             }
 
             /* Section padding */
             .section-responsive {
                 padding-top: 4rem;
                 padding-bottom: 4rem;
-                padding-left: 1rem;
-                padding-right: 1rem;
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
             }
 
             /* Section headings */
@@ -781,9 +807,10 @@
 
             /* Hero buttons */
             .hero-buttons {
-                flex-direction: column;
-                align-items: stretch;
+                flex-direction: column !important;
+                align-items: stretch !important;
                 gap: 12px !important;
+                margin-top: 1.5rem !important;
             }
 
             .hero-buttons .btn-glossy {
@@ -805,18 +832,27 @@
 
         /* ===== RESPONSIVE: SMALL PHONES (480px) ===== */
         @media (max-width: 480px) {
+            .hero-section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .hero-layout {
+                gap: 1.5rem !important;
+            }
+
             .hero-section h1 {
-                font-size: 1.65rem !important;
+                font-size: 1.5rem !important;
                 line-height: 1.25;
             }
 
             .hero-section p {
-                font-size: 0.88rem !important;
+                font-size: 0.85rem !important;
             }
 
             .profile-container {
-                width: 150px;
-                height: 150px;
+                width: 130px;
+                height: 130px;
             }
 
             .section-responsive {
@@ -999,9 +1035,9 @@
             <div class="orb orb-3"></div>
         </div>
 
-        <div class="max-w-6xl w-full mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20 z-10 py-16">
+        <div class="hero-layout max-w-6xl w-full mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20 z-10 py-16">
             <!-- Left: Text Content -->
-            <div class="flex-1 text-center lg:text-left">
+            <div class="hero-text flex-1 text-center lg:text-left">
                 <div class="reveal delay-1">
                     <span class="hero-badge inline-flex items-center text-xs font-semibold tracking-widest uppercase bg-indigo-500/10 text-indigo-400 border border-indigo-500/15 px-4 py-1.5 rounded-full" style="font-family: 'JetBrains Mono', monospace;">
                         <span class="status-dot"></span>
@@ -1037,7 +1073,7 @@
             </div>
 
             <!-- Right: Profile Image -->
-            <div class="reveal-scale delay-2 flex-shrink-0">
+            <div class="profile-wrapper reveal-scale delay-2 flex-shrink-0">
                 <div class="profile-container">
                     <div class="profile-glow"></div>
                     <img src="Midhun_photo.jpeg" alt="Midhun Kunjumon — Software Engineer" class="profile-image" id="profileImg">
